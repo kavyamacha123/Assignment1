@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #survey-form {
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    #survey-form fieldset {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    #survey-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #survey-form select, #survey-form input[type="text"], #survey-form input[type="email"], #survey-form input[type="tel"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    #survey-form .checkbox-label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #survey-form #submit, #survey-form #reset {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form id="survey-form" onsubmit="return false;">
+    <fieldset>
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" required>
+    </fieldset>
+    <fieldset>
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="last-name" required>
+    </fieldset>
+    <fieldset>
+      <label for="date-of-birth">Date of Birth:</label>
+      <input type="date" id="date-of-birth" required>
+    </fieldset>
+    <fieldset>
+      <label for="country">Country:</label>
+      <select id="country" required>
+        <option value="">Select a Country</option>
+        <!-- Add country options here -->
+      </select>
+    </fieldset>
+    <fieldset>
+      <label>Gender:</label>
+      <label class="checkbox-label"><input type="checkbox" name="gender" value="Male"> Male</label>
+      <label class="checkbox-label"><input type="checkbox" name="gender" value="Female"> Female</label>
+      <label class="checkbox-label"><input type="checkbox" name="gender" value="Other"> Other</label>
+    </fieldset>
+    <fieldset>
+      <label for="profession">Profession:</label>
+      <input type="text" id="profession" required>
+    </fieldset>
+    <fieldset>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+    </fieldset>
+    <fieldset>
+      <label for="mobile-number">Mobile Number:</label>
+      <input type="tel" id="mobile-number" required>
+    </fieldset>
+    <button id="submit" onclick="submitForm()">Submit</button>
+    <button id="reset" onclick="resetForm()">Reset</button>
+  </form>
+
+  <script>
+    function submitForm() {
+      const firstName = document.getElementById("first-name").value;
+      const lastName = document.getElementById("last-name").value;
+      const dateOfBirth = document.getElementById("date-of-birth").value;
+      const country = document.getElementById("country").value;
+      const gender = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(checkbox => checkbox.value).join(", ");
+      const profession = document.getElementById("profession").value;
+      const email = document.getElementById("email").value;
+      const mobileNumber = document.getElementById("mobile-number").value;
+
+      const message = `First Name: ${firstName}\nLast Name: ${lastName}\nDate of Birth: ${dateOfBirth}\nCountry: ${country}\nGender: ${gender}\nProfession: ${profession}\nEmail: ${email}\nMobile Number: ${mobileNumber}`;
+
+      alert("Survey Data:\n" + message);
+
+      resetForm();
+    }
+
+    function resetForm() {
+      document.getElementById("survey-form").reset();
+    }
+  </script>
+</body>
+</html>
